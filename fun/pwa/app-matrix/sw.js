@@ -1,12 +1,12 @@
 // ogis.app shell service worker.
 // Hand-rolled, no Workbox. The cache is populated progressively as the app
-// loads: install seeds "/" and "/index.html", then the fetch handler caches
-// same-origin assets (hashed JS/CSS bundles) on first fetch.
+// loads: install seeds "./" and the scope-relative index.html, then the fetch
+// handler caches same-origin assets (hashed JS/CSS bundles) on first fetch.
 
 const SHELL_CACHE = "ogis-shell-v1";
 const MAP_CACHE = "ogis-map-v1";
 const CACHE_ALLOWLIST = [SHELL_CACHE, MAP_CACHE];
-const SHELL_URL = "/index.html";
+const SHELL_URL = new URL("./index.html", self.registration.scope).href;
 
 // Cross-origin hosts that serve map resources (style JSON, vector/raster
 // tiles, DEM hillshades, glyphs, sprites and TileJSON). Any path on these
@@ -40,7 +40,7 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
       .open(SHELL_CACHE)
-      .then((cache) => cache.addAll(["/", SHELL_URL]))
+      .then((cache) => cache.addAll(["./", SHELL_URL]))
       .then(() => self.skipWaiting()),
   );
 });
