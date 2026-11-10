@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>Open GIS archive</title>
+    <title>Open GIS Archive</title>
     <meta
       name="description"
       content="A small archive of experiments and apps from Open GIS."
@@ -18,7 +18,15 @@
       href="https://www.ogis.org/branding/assets/img/logo-green.png"
     />
     <style>
-      .site-brand img {
+      .site-header > .site-brand {
+        grid-area: 1 / 2;
+        align-self: start;
+        justify-self: start;
+        margin-top: 20px;
+        z-index: 1;
+      }
+
+      .site-header > .site-brand img {
         display: block;
       }
 
@@ -33,19 +41,27 @@
   </head>
   <body>
     <header class="site-header">
+      <div
+        class="background-map background-map--invert"
+        data-background-map="invert"
+        aria-hidden="true"
+      ></div>
       <a class="site-brand" href="https://www.ogis.org/" aria-label="Open GIS">
         <img
-          src="https://www.ogis.org/branding/assets/img/logo-green.png"
-          alt="Open GIS"
-          width="40"
-          height="40"
+          src="https://www.ogis.org/branding/assets/img/logo-white.svg"
+          width="64"
+          height="64"
+          alt=""
         />
-        <h1>Archive</h1>
       </a>
     </header>
 
     <main class="ogis-bands">
       <section class="ogis-band">
+        <h1>Archive</h1>
+      </section>
+
+      <section class="ogis-band ogis-band--alt">
         <h2>Fun</h2>
         <ul>
           <li>
@@ -54,6 +70,23 @@
           </li>
         </ul>
       </section>
+
+      <section class="ogis-band">
+        <blockquote>
+          <p>Those who cannot remember the past are condemned to repeat it.</p>
+          &ndash;
+          <cite
+            ><a href="https://en.wikipedia.org/wiki/George_Santayana"
+              >George Santayana</a
+            ></cite
+          >
+        </blockquote>
+      </section>
     </main>
+
+    <script
+      defer
+      src="https://www.ogis.org/branding/assets/js/background-map.js"
+    ></script>
   </body>
 </html>
